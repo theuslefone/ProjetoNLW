@@ -2,7 +2,7 @@ import { useRouter } from 'next/router';
 import ptBR from   'date-fns/locale/pt-BR';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 import {format, parseISO} from 'date-fns'
-import {GetStaticProps} from 'next'
+import {GetStaticPaths, GetStaticProps} from 'next'
 import { api } from '../../services/api';
 
 type Episode = {
@@ -21,12 +21,19 @@ type EpisodeProps = {
     episode: Episode;
 };
 
+export const getStaticPaths: GetStaticPaths = async () =>{
+    return {
+        paths: [],
+        fallback: 'blocking'
+    }
+}
+
 
 export default function Episode({episode}){
     const router = useRouter();
 
     return(
-        <h1>{router.query.slug}</h1>
+        <h1>{episode.title}</h1>
     )
 }
 
