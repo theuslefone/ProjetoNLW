@@ -3,7 +3,7 @@ import {format, parseISO} from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { api } from '../services/api';
 import {convertDurationToTimeString} from '../utils/convertDurationToTimeString';
-import Image from 'next/Image';
+import Image from 'next/image';
 
 import styles from './home.module.scss';
 
@@ -37,7 +37,12 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps)  {
          {latestEpisodes.map(episode => { // Depois do map, precisa-se colocar uma key do item incomum entre todos os Episodes
            return (
             <li key={episode.id}>
-              <img src={episode.thumbnail} alt={episode.title}/>
+              <Image 
+                width={192} 
+                height={192}
+                src={episode.thumbnail} 
+                alt={episode.title}
+              />
 
               <div className={styles.episodeDatails}>
               <a href="">{episode.title}</a>
