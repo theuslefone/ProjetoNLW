@@ -4,7 +4,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { api } from '../services/api';
 import {convertDurationToTimeString} from '../utils/convertDurationToTimeString';
 
-import styles from '.home.module.scss';
+import styles from './home.module.scss';
 
 
 type Episode = {
@@ -33,7 +33,13 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps)  {
        <h2>Últimos lançamentos</h2>
 
        <ul>
-         
+         {latestEpisodes.map(episode => {
+           return (
+            <li>
+              <a href="">{episode.title}</a>
+            </li>
+           );
+         })}
        </ul>
 
      </section>
@@ -80,7 +86,8 @@ const allEpisodes = episodes.slice(2, episodes.length)
 
   return {
     props: {
-      episodes,
+      latestEpisodes,
+      allEpisodes
 
     },
     revalidate: 60 * 60 * 8
