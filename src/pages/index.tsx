@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
 import {format, parseISO} from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
+import Link from 'next/link'
 import { api } from '../services/api';
 import {convertDurationToTimeString} from '../utils/convertDurationToTimeString';
 import Image from 'next/image';
@@ -47,7 +48,10 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps)  {
                 />
 
                 <div className={styles.episodeDatails}>
-                <a href="">{episode.title}</a>
+                <Link href={`/episodes/${episode.id}`}>
+                    <a >{episode.title}</a>
+                </Link>
+                
                 <p>{episode.members}</p>
                 <span>{episode.publishedAt}</span>
                 <span>{episode.durationAsString}</span>
@@ -82,7 +86,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps)  {
            {allEpisodes.map(episode =>{
              return(
               <tr key={episode.id}>
-                <td>
+                <td style={{width:80}}>
                   <Image
                   width ={120}
                   height={120}
@@ -95,7 +99,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps)  {
                   <a href="">{episode.title}</a>
                   </td>
                   <td>{episode.members}</td>
-                  <td>{episode.publishedAt}</td> 
+                  <td style={{width:80}}>{episode.publishedAt}</td> 
                   <td>{episode.durationAsString}</td>
                   <td>
                     <button type='button'>
