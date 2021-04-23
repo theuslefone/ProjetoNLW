@@ -37,7 +37,7 @@ export default function Home(props, HomeProps) {
 
      </section>
 
-     <section classNmae = {styles.allEpisodes}>
+     <section className = {styles.allEpisodes}>
 
      </section>
     </div>
