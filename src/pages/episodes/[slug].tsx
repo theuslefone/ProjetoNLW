@@ -5,7 +5,24 @@ import {format, parseISO} from 'date-fns'
 import {GetStaticProps} from 'next'
 import { api } from '../../services/api';
 
-export default function Episode(){
+type Episode = {
+    id: string,
+    title: string,
+    thumbnail: string,
+    members: string,
+    publishedAt: string,
+    duration: number,
+    durationAsString: string,
+    description: string,
+    url: string
+};
+
+type EpisodeProps = {
+    episode: Episode;
+};
+
+
+export default function Episode({episode}){
     const router = useRouter();
 
     return(
