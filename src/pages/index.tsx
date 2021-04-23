@@ -33,10 +33,21 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps)  {
        <h2>Últimos lançamentos</h2>
 
        <ul>
-         {latestEpisodes.map(episode => {
+         {latestEpisodes.map(episode => { // Depois do map, precisa-se colocar uma key do item incomum entre todos os Episodes
            return (
-            <li>
+            <li key={episode.id}>
+              <img src={episode.thumbnail} alt={episode.title}/>
+
+              <div className={styles.episodeDatails}>
               <a href="">{episode.title}</a>
+              <p>{episode.members}</p>
+              <span>{episode.publishedAt}</span>
+              <span>{episode.durationAsString}</span>
+              </div>
+
+              <button type="button">
+                <img src="/play-green.svg" alt="Tocar episoódio"/>
+              </button>
             </li>
            );
          })}
