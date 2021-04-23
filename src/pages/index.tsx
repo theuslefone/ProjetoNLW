@@ -22,14 +22,29 @@ type HomeProps = {
   episodes: episode[];
 }
 
+
+
+//Render aqui
 export default function Home(props, HomeProps) {
   return (
-    <div>
-      <h1>index</h1>
-      <p>{JSON.stringify(props.episodes)}</p>
+    <div className= {styles.homePage}>
+     <section className= {styles.latestEpisodes}>
+       <h2>Últimos lançamentos</h2>
+
+       <ul>
+         
+       </ul>
+
+     </section>
+
+     <section classNmae = {styles.allEpisodes}>
+
+     </section>
     </div>
   );
 }
+
+
 
 // Chamar API
 export const getStaticProps: GetStaticProps = async () => {
@@ -57,6 +72,9 @@ export const getStaticProps: GetStaticProps = async () => {
 
     }
   })
+
+const latestEpisodes = episodes.slice(0, 2);
+const allEpisodes = episodes.slice(2, episodes.length) 
 
 
   return {
