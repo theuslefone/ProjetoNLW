@@ -7,7 +7,7 @@ import {convertDurationToTimeString} from '../utils/convertDurationToTimeString'
 import styles from '.home.module.scss';
 
 
-type episode = {
+type Episode = {
   id:string,
   title: string,
   thumbnail: string,
@@ -19,13 +19,14 @@ type episode = {
   url: string
 }
 type HomeProps = {
-  episodes: episode[];
+  latestEpisodes : Episode[],
+  allEpisodes :  Episode[]
 }
 
 
 
 //Render aqui
-export default function Home(props, HomeProps) {
+export default function Home({latestEpisodes, allEpisodes}: HomeProps)  {
   return (
     <div className= {styles.homePage}>
      <section className= {styles.latestEpisodes}>
