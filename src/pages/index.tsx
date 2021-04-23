@@ -30,41 +30,88 @@ type HomeProps = {
 export default function Home({latestEpisodes, allEpisodes}: HomeProps)  {
   return (
     <div className= {styles.homePage}>
-     <section className= {styles.latestEpisodes}>
-       <h2>Últimos lançamentos</h2>
 
-       <ul>
-         {latestEpisodes.map(episode => { // Depois do map, precisa-se colocar uma key do item incomum entre todos os Episodes
-           return (
-            <li key={episode.id}>
-              <Image 
-                width={192} 
-                height={192}
-                src={episode.thumbnail} 
-                alt={episode.title}
-                objectFit="cover"
-              />
+      <section className= {styles.latestEpisodes}>
+        <h2>Últimos lançamentos</h2>
 
-              <div className={styles.episodeDatails}>
-              <a href="">{episode.title}</a>
-              <p>{episode.members}</p>
-              <span>{episode.publishedAt}</span>
-              <span>{episode.durationAsString}</span>
-              </div>
+        <ul>
+          {latestEpisodes.map(episode => { // Depois do map, precisa-se colocar uma key do item incomum entre todos os Episodes
+            return (
+              <li key={episode.id}>
+                <Image 
+                  width={192} 
+                  height={192}
+                  src={episode.thumbnail} 
+                  alt={episode.title}
+                  objectFit="cover"
+                />
 
-              <button type="button">
-                <img src="/play-green.svg" alt="Tocar episoódio"/>
-              </button>
-            </li>
-           );
-         })}
-       </ul>
+                <div className={styles.episodeDatails}>
+                <a href="">{episode.title}</a>
+                <p>{episode.members}</p>
+                <span>{episode.publishedAt}</span>
+                <span>{episode.durationAsString}</span>
+                </div>
+
+                <button type="button">
+                  <img src="/play-green.svg" alt="Tocar episoódio"/>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+      </section>
+      
+      <section className = {styles.allEpisodes}>
+
+       <h2>Todos os episódios</h2>
+
+       <table cellSpacing={0}>
+         
+         <thead>
+           <th></th>
+           <th>Podcast</th>
+           <th>Integrantes</th>
+           <th>Data</th>
+           <th>Duração</th>
+           <th></th>
+         </thead>
+         <tbody>
+
+           {allEpisodes.map(episode =>{
+             return(
+              <tr key={episode.id}>
+                <td>
+                  <Image
+                  width ={120}
+                  height={120}
+                  src={episode.thumbnail}
+                  alt={episode.title}
+                  objectFit="cover"
+                  />
+                  </td> 
+                  <td>
+                  <a href="">{episode.title}</a>
+                  </td>
+                  <td>{episode.members}</td>
+                  <td>{episode.publishedAt}</td> 
+                  <td>{episode.durationAsString}</td>
+                  <td>
+                    <button type='button'>
+                      <img src="/play-green.svg" alt="Tocar episódio"/>
+                    </button>
+                  </td>
+                  
+              </tr>
+             );
+           })}
+         </tbody>
+
+       </table>
 
      </section>
-
-     <section className = {styles.allEpisodes}>
-
-     </section>
+     
     </div>
   );
 }
