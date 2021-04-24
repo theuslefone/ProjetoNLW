@@ -26,19 +26,14 @@ type HomeProps = {
   allEpisodes: Episode[]
 }
 
-
-
-
-
-//Render aqui
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-  const player = useContext(playerContext)
+  const { play } = useContext(playerContext)
   
   return (
     <div className={styles.homePage}>
 
       <section className={styles.latestEpisodes}>
-        <h2>Últimos lançamentos {player}</h2>
+        <h2>Últimos lançamentos</h2>
 
         <ul>
           {latestEpisodes.map(episode => { // Depois do map, precisa-se colocar uma key do item incomum entre todos os Episodes
@@ -62,7 +57,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   <span>{episode.durationAsString}</span>
                 </div>
 
-                <button type="button">
+                <button type="button" onClick={() => play(episode)}>
                   <img src="/play-green.svg" alt="Tocar episoódio" />
                 </button>
               </li>
@@ -112,7 +107,7 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
                   <td style={{ width: 80 }}>{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
                   <td>
-                    <button type='button'>
+                    <button type='button' onClick={() => play(episode)}>
                       <img src="/play-green.svg" alt="Tocar episódio" />
                     </button>
                   </td>
@@ -129,6 +124,11 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
     </div>
   );
 }
+
+
+
+//Render aqui
+
 
 
 
