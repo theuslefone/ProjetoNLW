@@ -2,12 +2,14 @@ import { GetStaticProps } from 'next';
 import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import Link from 'next/link'
-import { api } from '../services/api';
-import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
 import Image from 'next/image';
 
-import styles from './home.module.scss';
+import { api } from '../services/api';
+import { useContext } from 'react';
+import { convertDurationToTimeString } from '../utils/convertDurationToTimeString';
+import { playerContext } from '../context/playerContext';
 
+import styles from './home.module.scss';
 
 type Episode = {
   id: string,
@@ -26,13 +28,17 @@ type HomeProps = {
 
 
 
+
+
 //Render aqui
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
+  const player = useContext(playerContext)
+  
   return (
     <div className={styles.homePage}>
 
       <section className={styles.latestEpisodes}>
-        <h2>Últimos lançamentos</h2>
+        <h2>Últimos lançamentos {player}</h2>
 
         <ul>
           {latestEpisodes.map(episode => { // Depois do map, precisa-se colocar uma key do item incomum entre todos os Episodes
