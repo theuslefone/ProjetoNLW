@@ -1,11 +1,12 @@
 import { useRouter } from 'next/router';
 import ptBR from 'date-fns/locale/pt-BR';
-import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 import Link from 'next/link';
 import Image from 'next/image'
 import { format, parseISO } from 'date-fns'
 import { GetStaticPaths, GetStaticProps } from 'next'
+
 import { api } from '../../services/api';
+import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 
 import styles from './episode.module.scss'
 
@@ -49,7 +50,7 @@ export default function Episode({ episode }:EpisodeProps ) {
             src={episode.thumbnail} 
             objectFit="cover" 
           />
-          <button type="button">
+          <button type="button" >
             <img src="/play.svg" alt="Tocar episódio"/>
           </button>
         </div>
