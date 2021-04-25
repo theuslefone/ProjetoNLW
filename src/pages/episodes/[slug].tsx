@@ -4,9 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image'
 import { format, parseISO } from 'date-fns'
 import { GetStaticPaths, GetStaticProps } from 'next'
+import { useContext } from 'react';
 
 import { api } from '../../services/api';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
+import { playerContext } from '../../context/playerContext';
 
 import styles from './episode.module.scss'
 
@@ -26,8 +28,10 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }:EpisodeProps ) {
-
+  const { play } = useContext(playerContext)
   const router = useRouter();
+
+
   if(router.isFallback){
     return(
       <div>
@@ -50,7 +54,7 @@ export default function Episode({ episode }:EpisodeProps ) {
             src={episode.thumbnail} 
             objectFit="cover" 
           />
-          <button type="button" >
+          <button type="button" onClick={() => play(episode)} >
             <img src="/play.svg" alt="Tocar episódio"/>
           </button>
         </div>
