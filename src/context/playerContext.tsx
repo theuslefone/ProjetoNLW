@@ -13,6 +13,7 @@ type playerContextData = {
     currentEpisodeIndex: number;
     isPlaying: boolean;
     play: (episode: Episode) => void;
+    playList: (list: Episode[], index: number) => void;
     tooglePlay : () => void;
     setPlayingState : (state: boolean) => void;
 };
@@ -54,7 +55,8 @@ const [isPlaying, setIsPlaying] = useState(false);
         isPlaying, 
         tooglePlay, 
         play, 
-        setPlayingState 
+        setPlayingState,
+        playList
     }}>
         {children}
     </playerContext.Provider>
