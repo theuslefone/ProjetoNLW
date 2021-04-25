@@ -27,11 +27,10 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
+
 const { play } = useContext(playerContext)
-  
   return (
     <div className={styles.homePage}>
-
       <section className={styles.latestEpisodes}>
         <h2>Últimos lançamentos</h2>
 
@@ -67,7 +66,6 @@ const { play } = useContext(playerContext)
         </ul>
 
       </section>
-
       <section className={styles.allEpisodes}>
 
         <h2>Todos os episódios</h2>
@@ -121,12 +119,9 @@ const { play } = useContext(playerContext)
         </table>
 
       </section>
-
     </div>
   );
 }
-
-
 // Chamar API
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await api.get('episodes', {
@@ -136,9 +131,7 @@ export const getStaticProps: GetStaticProps = async () => {
       _order: 'desc',
     }
   });
-
   // Formatar dados da API
-
   const episodes = data.map(episode => {
     return {
       id: episode.id,
@@ -152,17 +145,15 @@ export const getStaticProps: GetStaticProps = async () => {
 
     }
   })
-
   const latestEpisodes = episodes.slice(0, 2);
   const allEpisodes = episodes.slice(2, episodes.length)
-
-
   return {
     props: {
       latestEpisodes,
       allEpisodes
 
     },
+    //Define intervalo de renderização estática
     revalidate: 60 * 60 * 8
   }
 
