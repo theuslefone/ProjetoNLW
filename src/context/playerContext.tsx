@@ -22,8 +22,6 @@ type PlayerContextProviderProps = {
 }
 
 export const playerContext = createContext({} as playerContextData);
-
-
 export function PlayerContextProvider({children}: PlayerContextProviderProps){
 
 const [episodeList, setEpisodeList] = useState([]);
@@ -33,6 +31,12 @@ const [isPlaying, setIsPlaying] = useState(false);
   function play(episode: Episode){
     setEpisodeList([episode]);
     setCurrentEpisodeIndex(0);
+    setIsPlaying(true)
+  }
+
+  function playList(list: Episode[], index: number){
+    setEpisodeList(list);
+    setCurrentEpisodeIndex(index);
     setIsPlaying(true)
   }
 
