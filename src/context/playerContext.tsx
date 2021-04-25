@@ -14,10 +14,12 @@ type playerContextData = {
     currentEpisodeIndex: number;
     isPlaying: boolean;
     isLooping: boolean;
+    isShuffling: boolean;
     play: (episode: Episode) => void;
     playList: (list: Episode[], index: number) => void;
     tooglePlay : () => void;
     toogleLoop : () => void;
+    toogleShuffle : () => void;
     setPlayingState : (state: boolean) => void;
     playNext: () => void;
     playPrevious: () => void;
@@ -36,6 +38,7 @@ const [episodeList, setEpisodeList] = useState([]);
 const [currentEpisodeIndex, setCurrentEpisodeIndex] = useState(0);
 const [isPlaying, setIsPlaying] = useState(false);
 const [isLooping, setIsLooping] = useState(false);
+const [isShuffling, setIsShuffling] = useState(false);
 
   function play(episode: Episode){
     setEpisodeList([episode]);
@@ -55,6 +58,10 @@ const [isLooping, setIsLooping] = useState(false);
   
   function toogleLoop(){
     setIsLooping(!isLooping)
+  }
+
+  function toogleShuffle(){
+    setIsShuffling(!isShuffling)
   }
 
   function setPlayingState(state: boolean){
@@ -82,8 +89,10 @@ const [isLooping, setIsLooping] = useState(false);
         currentEpisodeIndex, 
         isPlaying,
         isLooping, 
+        isShuffling,
         tooglePlay,
-        toogleLoop, 
+        toogleLoop,
+        toogleShuffle, 
         play, 
         setPlayingState,
         playList,
