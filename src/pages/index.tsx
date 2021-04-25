@@ -28,14 +28,16 @@ type HomeProps = {
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 
-const { play } = useContext(playerContext)
+const { playList } = useContext(playerContext)
+const episodeList = [...latestEpisodes, ...allEpisodes];
+
   return (
     <div className={styles.homePage}>
       <section className={styles.latestEpisodes}>
         <h2>Últimos lançamentos</h2>
 
         <ul>
-          {latestEpisodes.map(episode => { // Depois do map, precisa-se colocar uma key do item incomum entre todos os Episodes
+          {latestEpisodes.map((episode, index) => { // Depois do map, precisa-se colocar uma key do item incomum entre todos os Episodes
             return (
               <li key={episode.id}>
                 <Image
@@ -56,7 +58,7 @@ const { play } = useContext(playerContext)
                   <span>{episode.durationAsString}</span>
                 </div>
 
-                <button type="button" onClick={() => play(episode)}>
+                <button type="button" onClick={() => playList(episodeList, index)}>
                   <img src="/play-green.svg" alt="Tocar episoódio" />
                   
                 </button>
@@ -84,7 +86,7 @@ const { play } = useContext(playerContext)
           </thead>
           <tbody>
 
-            {allEpisodes.map(episode => {
+            {allEpisodes.map((episode, index) => {
               return (
                 <tr key={episode.id}>
                   <td style={{ width: 80 }}>
@@ -106,7 +108,7 @@ const { play } = useContext(playerContext)
                   <td style={{ width: 80 }}>{episode.publishedAt}</td>
                   <td>{episode.durationAsString}</td>
                   <td>
-                    <button type='button' onClick={() => play(episode)}>
+                    <button type='button' onClick={() => playList(episodeList, index + latestEpisodes.length)}>
                       <img src="/play-green.svg" alt="Tocar episódio" />
                     </button>
                   </td>
