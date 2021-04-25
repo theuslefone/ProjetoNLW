@@ -7,7 +7,7 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css'
 
 export default function Player() {
-    const { episodeList, currentEpisodeIndex } = useContext(playerContext);
+    const { episodeList, currentEpisodeIndex, isPlaying } = useContext(playerContext);
  
     const episode = episodeList[currentEpisodeIndex];
 
