@@ -127,7 +127,12 @@ export default function Player() {
                     >
                         <img src="/play-next.svg" alt="Tocar próxima" />
                     </button>
-                    <button type='button' disabled={!episode}>
+                    <button 
+                    type='button' 
+                    disabled={!episode}
+                    onClick={toogleLoop}
+                    className={isLooping ? styles.isActivy : ''}
+                    >
                         <img src="/repeat.svg" alt="Repetir" />
                     </button>
                 </div>
