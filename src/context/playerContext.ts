@@ -9,8 +9,9 @@ type Episode = {
 };
 
 type playerContextData = {
-    episodeList : Episode[],
-    currentEpisodeIndex: number
+    episodeList : Episode[];
+    currentEpisodeIndex: number;
+    isPlaying: boolean;
     play: (episode: Episode) => void;
 };
 
