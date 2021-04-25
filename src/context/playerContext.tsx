@@ -48,6 +48,19 @@ const [isPlaying, setIsPlaying] = useState(false);
   function setPlayingState(state: boolean){
     setIsPlaying(state)
   }
+
+  function playNext(){
+    if (currentEpisodeIndex < episodeList.length){
+      setCurrentEpisodeIndex(currentEpisodeIndex + 1);
+    }
+  }
+
+  function playPrevius(){
+    if (currentEpisodeIndex > 0){
+      setCurrentEpisodeIndex(currentEpisodeIndex - 1);
+    }
+  }
+
   return(
     <playerContext.Provider value={{
         episodeList, 
