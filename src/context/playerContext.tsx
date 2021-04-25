@@ -1,4 +1,5 @@
 import { createContext, useState, ReactNode } from 'react';
+import { useContext } from 'react';
 
 type Episode = {
     title: string,
@@ -86,3 +87,7 @@ const [isPlaying, setIsPlaying] = useState(false);
     </playerContext.Provider>
   )
 } 
+
+export const usePlayer = () =>{
+  return useContext(playerContext);
+}
