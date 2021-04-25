@@ -13,8 +13,10 @@ export default function Player() {
         episodeList,
         currentEpisodeIndex,
         isPlaying,
+        isLooping,
         setPlayingState,
         tooglePlay,
+        toogleLoop,
         playNext,
         playPrevious,
         hasPrevious,
@@ -88,6 +90,7 @@ export default function Player() {
                             src={episode.url}
                             ref={audioRef}
                             autoPlay
+                            loop={isLooping}
                             onPlay={ () => setPlayingState(true) }
                             onPause={ () => setPlayingState(false) }
                         />
