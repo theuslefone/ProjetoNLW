@@ -1,12 +1,13 @@
-import { useContext } from 'react';
+import { useContext, useRef } from 'react';
 import styles from './styles.module.scss'
 import { playerContext } from './../../context/playerContext'
 import Image from 'next/image';
 import Slider from 'rc-slider';
 
-import 'rc-slider/assets/index.css'
+import 'rc-slider/assets/index.css';
 
 export default function Player() {
+    const audioRef = useRef<HTMLAudioElement>(null)
     const { 
         episodeList,
         currentEpisodeIndex,
