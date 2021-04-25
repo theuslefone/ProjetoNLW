@@ -27,7 +27,7 @@ type HomeProps = {
 }
 
 export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
-  const { play } = useContext(playerContext)
+const { play } = useContext(playerContext)
   
   return (
     <div className={styles.homePage}>
@@ -126,19 +126,13 @@ export default function Home({ latestEpisodes, allEpisodes }: HomeProps) {
 }
 
 
-
-//Render aqui
-
-
-
-
 // Chamar API
 export const getStaticProps: GetStaticProps = async () => {
   const { data } = await api.get('episodes', {
     params: {
       _limit: 12,
       _sort: 'published_at',
-      order: 'desc',
+      _order: 'desc',
     }
   });
 
