@@ -8,7 +8,7 @@ import { useContext } from 'react';
 
 import { api } from '../../services/api';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
-import { playerContext } from '../../context/playerContext';
+import { usePlayer } from '../../context/playerContext';
 
 import styles from './episode.module.scss'
 
@@ -28,7 +28,7 @@ type EpisodeProps = {
 }
 
 export default function Episode({ episode }:EpisodeProps ) {
-  const { play } = useContext(playerContext)
+  const { play  } = usePlayer();
   const router = useRouter();
 
 
@@ -44,7 +44,7 @@ export default function Episode({ episode }:EpisodeProps ) {
         <div className={styles.episode}>
         <div className={styles.thumbnailContainer}>
           <Link href="/">
-            <button type="button">
+            <button type="button" onClick={() => play(episode)}>
               <img src="/arrow-left.svg" alt="Voltar" />
             </button>
           </Link>
