@@ -1,4 +1,4 @@
-import { useContext, useRef } from 'react';
+import { useContext, useEffect, useRef } from 'react';
 import styles from './styles.module.scss'
 import { playerContext } from './../../context/playerContext'
 import Image from 'next/image';
@@ -14,6 +14,18 @@ export default function Player() {
         isPlaying,
         tooglePlay}
          = useContext(playerContext);
+
+         useEffect(()=> {
+             if(!audioRef.current){
+                 return;
+             } 
+
+             if(isPlaying){
+                audioRef.current.play()
+             }else {
+                 audioRef.current.pause()
+                }
+         }, [isPlaying])
  
     const episode = episodeList[currentEpisodeIndex];
 
@@ -66,9 +78,9 @@ export default function Player() {
                     
                     { episode && 
                         <audio
-                         src={episode.url}
-                        autoPlay
-                        
+                            src={episode.url}
+                            ref={audioRef}
+                            autoPlay
                         />
                     }
 
