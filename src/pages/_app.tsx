@@ -19,8 +19,12 @@ function MyApp({ Component, pageProps }) {
     setIsPlaying(true)
   }
 
+  function tooglePlay(){
+    setIsPlaying(!isPlaying)
+  }
+
   return (
-    <playerContext.Provider value={{episodeList, currentEpisodeIndex, isPlaying, play}}>
+    <playerContext.Provider value={{episodeList, currentEpisodeIndex, isPlaying, tooglePlay, play}}>
       <div className={styles.appWrapper}>
       <main><Header />
       <Component {...pageProps} />
