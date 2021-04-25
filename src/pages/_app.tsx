@@ -16,6 +16,7 @@ function MyApp({ Component, pageProps }) {
   function play(episode){
     setEpisodeList([episode]);
     setCurrentEpisodeIndex(0);
+    setIsPlaying(true)
   }
 
   return (

@@ -59,6 +59,7 @@ const { play } = useContext(playerContext)
 
                 <button type="button" onClick={() => play(episode)}>
                   <img src="/play-green.svg" alt="Tocar episoódio" />
+                  
                 </button>
               </li>
             );
