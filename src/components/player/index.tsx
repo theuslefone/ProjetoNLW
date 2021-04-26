@@ -23,6 +23,7 @@ export default function Player() {
         toogleShuffle,
         playNext,
         playPrevious,
+        clearPlayerState,
         hasPrevious,
         hasNext
     }
@@ -47,6 +48,18 @@ export default function Player() {
                 setProgress(Math.floor(audioRef.current.currentTime));
             });
         }
+    function handleSeak(amount: number){
+        audioRef.current.currentTime = amount;
+        setProgress(amount);
+    }
+
+    function handleSeakEnded(){
+        if(hasNext){
+            playNext();
+        }else {
+            clearPlayerState();
+        }
+    }
  
     const episode = episodeList[currentEpisodeIndex];
 
@@ -86,6 +99,7 @@ export default function Player() {
                     <div className={styles.slider}>
                         {episode ? (
                             <Slider 
+                            onChange={handleSeak}
                             max={episode.duration}
                             value={progress}
                             trackStyle ={{backgroundColor: '#04d361'}}
