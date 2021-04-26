@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image'
 import { format, parseISO } from 'date-fns'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { useContext } from 'react';
+import Head from 'next/head';
 
 import { api } from '../../services/api';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
@@ -35,6 +35,9 @@ export default function Episode({ episode }:EpisodeProps ) {
   if(router.isFallback){
     return(
       <div>
+         <Head>
+      <title>{episode.title} | Podcastr </title>
+      </Head>
         <p>Carregando...</p>
       </div>
     )
